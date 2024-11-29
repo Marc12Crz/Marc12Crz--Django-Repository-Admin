@@ -1,0 +1,13 @@
+{% extends "albergue/base.html" %}
+
+{% block title %}Eliminar Pregunta{% endblock %}
+
+{% block content %}
+<h1>Eliminar Pregunta</h1>
+<p>¿Estás seguro de que deseas eliminar la pregunta: "{{ pregunta.pregunta }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a href="{% url 'lista_preguntas' %}?correo={{ correo }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "albergue/base.html" %}
+
+{% block title %}Chat{% endblock %}
+
+{% block content %}
+<h2>Chat con {{ usuario.nombre }}</h2>
+<div class="chat-box border rounded p-3" style="max-height: 400px; overflow-y: scroll;">
+    {% for mensaje in mensajes %}
+    <div class="mb-2 {% if mensaje.emisor == 'albergue' %}text-end{% endif %}">
+        <span class="badge bg-secondary">{{ mensaje.fecha_envio|date:"d M Y H:i" }}</span>
+        <p class="{% if mensaje.emisor == 'albergue' %}text-primary{% else %}text-success{% endif %}">
+            {{ mensaje.mensaje }}
+        </p>
+    </div>
+    {% endfor %}
+</div>
+<form method="POST" class="mt-3">
+    {% csrf_token %}
+    <div class="input-group">
+        <input type="text" name="mensaje" class="form-control" placeholder="Escribe un mensaje..." required>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+</form>
+<a href="{% url 'lista_solicitudes_adopcion' %}?correo={{ correo }}" class="btn btn-secondary mt-3">Volver</a>
+
+{% endblock %}

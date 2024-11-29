@@ -1,0 +1,12 @@
+{% extends "albergue/base.html" %}
+
+{% block title %}Actualizar Mascota{% endblock %}
+
+{% block content %}
+<h1>Actualizar Mascota</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+</form>
+{% endblock %}

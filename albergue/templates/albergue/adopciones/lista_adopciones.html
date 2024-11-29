@@ -1,0 +1,26 @@
+{% extends "albergue/base.html" %}
+
+{% block title %}Lista de Adopciones{% endblock %}
+
+{% block content %}
+<h1>Solicitudes de Adopción</h1>
+<div class="row">
+    {% for adopcion in adopciones %}
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Mascota: {{ adopcion.id_perro.nombre }}</h5>
+                <p class="card-text">Adoptante: {{ adopcion.id_usuario.nombre }}</p>
+                <p class="card-text">Motivo: {{ adopcion.motivo_adopcion }}</p>
+                <div class="d-flex justify-content-between">
+                    <a href="#" class="btn btn-info">Ver Solicitud</a>
+                    <a href="#" class="btn btn-primary">Chat</a>
+                    <a href="#" class="btn btn-success">Aceptar</a>
+                    <a href="#" class="btn btn-danger">Rechazar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

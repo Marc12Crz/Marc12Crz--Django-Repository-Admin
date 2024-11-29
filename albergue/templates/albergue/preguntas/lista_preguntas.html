@@ -1,0 +1,34 @@
+{% extends "albergue/base.html" %}
+
+{% block title %}Lista de Preguntas{% endblock %}
+
+{% block content %}
+<h1>Preguntas del Formulario</h1>
+<div class="d-flex justify-content-end mb-3">
+    <a href="{% url 'crear_pregunta' %}?correo={{ correo }}" class="btn btn-primary">Añadir Pregunta</a>
+</div>
+
+{% if preguntas %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Pregunta</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pregunta in preguntas %}
+        <tr>
+            <td>{{ pregunta.pregunta }}</td>
+            <td>
+                <a href="{% url 'actualizar_pregunta' pregunta.id_pregunta %}?correo={{ correo }}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'eliminar_pregunta' pregunta.id_pregunta %}?correo={{ correo }}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No hay preguntas registradas para este albergue.</p>
+{% endif %}
+{% endblock %}

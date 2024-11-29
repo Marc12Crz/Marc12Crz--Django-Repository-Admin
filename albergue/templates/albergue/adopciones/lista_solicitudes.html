@@ -1,0 +1,31 @@
+{% extends "albergue/base.html" %}
+
+{% block title %}Solicitudes de Adopción{% endblock %}
+
+{% block content %}
+<h2>Solicitudes de Adopción</h2>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Adoptante</th>
+            <th>Mascota</th>
+            <th>Fecha Solicitud</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for solicitud in solicitudes %}
+        <tr>
+            <td>{{ solicitud.id_usuario.nombre }}</td>
+            <td>{{ solicitud.id_perro.nombre }}</td>
+            <td>{{ solicitud.fecha_solicitud }}</td>
+            <td>{{ solicitud.estado_solicitud }}</td>
+            <td>
+                <a href="{% url 'detalle_solicitud' solicitud.id_adopcion %}?correo={{ correo }}" class="btn btn-info">Ver Detalle</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

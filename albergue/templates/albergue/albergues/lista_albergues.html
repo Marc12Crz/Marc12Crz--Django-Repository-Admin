@@ -1,0 +1,27 @@
+{% extends 'albergue/base.html' %}
+
+{% block title %}Lista de Albergues{% endblock %}
+{% block content %}
+<h1>Gestión de Albergues</h1>
+<div class="d-flex justify-content-end mb-3">
+    <a href="{% url 'crear_albergue' %}" class="btn btn-primary">Crear Albergue</a>
+</div>
+<div class="row">
+    {% for albergue in albergues %}
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ albergue.nombre }}</h5>
+                <p class="card-text">Correo: {{ albergue.correo }}</p>
+                <p class="card-text">Teléfono: {{ albergue.telefono }}</p>
+                <p class="card-text">Dirección: {{ albergue.direccion }}</p>
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'actualizar_albergue' albergue.id_albergue %}" class="btn btn-warning">Actualizar</a>
+                    <a href="{% url 'eliminar_albergue' albergue.id_albergue %}" class="btn btn-danger">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

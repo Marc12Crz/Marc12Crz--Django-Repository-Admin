@@ -1,0 +1,29 @@
+{% extends "albergue/base.html" %}
+
+{% block title %}Detalle de Solicitud{% endblock %}
+
+{% block content %}
+<h2>Detalle de Solicitud</h2>
+<p><strong>Adoptante:</strong> {{ adopcion.id_usuario.nombre }}</p>
+<p><strong>Mascota:</strong> {{ adopcion.id_perro.nombre }}</p>
+<h3>Respuestas al Formulario:</h3>
+<ul>
+    {% for respuesta in respuestas %}
+    <li><strong>{{ respuesta.id_pregunta.pregunta }}</strong>: {{ respuesta.respuesta }}</li>
+    {% endfor %}
+</ul>
+<div class="d-flex justify-content-between">
+    <a href="{% url 'chat' id_usuario=adopcion.id_usuario.id %}?correo={{ correo }}" class="btn btn-primary">
+        Ir al Chat
+    </a>
+    
+    <div>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" name="aceptar" class="btn btn-success">Aceptar</button>
+    <button type="submit" name="rechazar" class="btn btn-danger">Rechazar</button>
+</form>
+    </div>
+</div>
+<a href="{% url 'lista_solicitudes_adopcion' %}?correo={{ correo }}" class="btn btn-secondary mt-4">Volver a la Lista</a>
+{% endblock %}
