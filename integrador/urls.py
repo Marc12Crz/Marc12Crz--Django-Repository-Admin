@@ -15,8 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('albergue/', include('albergue.urls')),  # Asegúrate de incluir las rutas de 'albergue'
+    path('', include('albergue.urls')),  # Asegúrate de incluir las rutas de 'albergue'
 ]

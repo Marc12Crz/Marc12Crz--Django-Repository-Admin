@@ -1,0 +1,27 @@
+{% extends "albergue/base.html" %}
+
+{% block content %}
+<h1>Lista de Donaciones</h1>
+{% if donaciones %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Monto</th>
+                <th>Donante</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for donacion in donaciones %}
+            <tr>
+                <td>{{ donacion.monto }}</td>
+                <td>{{ donacion.donante }}</td>
+                <td>{{ donacion.fecha|date:"d/m/Y H:i" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No hay donaciones registradas.</p>
+{% endif %}
+{% endblock content %}
